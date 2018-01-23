@@ -2,16 +2,29 @@
 
 namespace App\Model;
 
-use App\Service\Util\Raetlyw;
+use App\Service\Util\Constant\Raetlyw;
 
 class ContentModel extends BaseModel
 {
-    protected $table;
-    protected $raetlyw;
+    static $table;
+    /**
+     *
+     * @var \App\Model\CommentModel
+     */
+    static $model;
 
-    public function __construct(Raetlyw $raetlyw)
+    public function __construct()
     {
-        $this->table = $raetlyw::TABLE_CONTNETS;
+        static::$table = Raetlyw::TABLE_COMMENTS;
     }
 
+    // 单例
+    public static function instance()
+    {
+        if(!self::$model){
+            return new self();
+        }
+
+        return self::$model;
+    }
 }

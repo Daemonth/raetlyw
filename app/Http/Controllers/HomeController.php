@@ -17,13 +17,11 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $comment = new CommentModel();
-        $comment->insert('');
+        $comment = CommentModel::instance()->select([['cid',8]]);
         return view('home');
     }
 }
